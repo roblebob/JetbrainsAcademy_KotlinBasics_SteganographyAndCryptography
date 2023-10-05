@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="SteganographyTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-10-05T13:05:15" hostname="roblebob-Predator-PT515-51" time="0.076">
+  <properties/>
+  <testcase name="start" classname="SteganographyTest" time="0.076"/>
+  <system-out><![CDATA[?[1;31m
+Start test 1?[0m
+Task (hide, show, exit):
+> hide
+Hiding message in image.
+> show
+Obtaining message from image.
+> test
+Wrong task: [test]
+> exit
+Bye!
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
