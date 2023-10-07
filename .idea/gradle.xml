@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="delegatedBuild" value="false" />
+        <option name="distributionType" value="WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Steganography and Cryptography/task" />
+            <option value="$PROJECT_DIR$/Steganography and Cryptography/task/build/classes/kotlin" />
+            <option value="$PROJECT_DIR$/Steganography and Cryptography/task/build/reports/tests" />
+            <option value="$PROJECT_DIR$/Steganography and Cryptography/task/build/test-results" />
+            <option value="$PROJECT_DIR$/Steganography and Cryptography/task/build/tmp" />
+            <option value="$PROJECT_DIR$/Topics/Aggregate operations on collections/Hacking the Matrix" />
+            <option value="$PROJECT_DIR$/Topics/Aggregate operations on collections/The Empire strikes back" />
+            <option value="$PROJECT_DIR$/Topics/Aggregate operations on collections/The average of your scores" />
+            <option value="$PROJECT_DIR$/Topics/Aggregate operations on collections/The right result of an aggregate function" />
+            <option value="$PROJECT_DIR$/Topics/Aggregate operations on collections/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Aggregate operations on collections/Which definition is correct" />
+            <option value="$PROJECT_DIR$/Topics/Generic functions/Correct declaration" />
+            <option value="$PROJECT_DIR$/Topics/Generic functions/Guess what's in the box" />
+            <option value="$PROJECT_DIR$/Topics/Generic functions/Revert the collection" />
+            <option value="$PROJECT_DIR$/Topics/Generic functions/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Generic functions/Understanding generics" />
+            <option value="$PROJECT_DIR$/Topics/Generic functions/What is a generic function" />
+            <option value="$PROJECT_DIR$/Topics/Image libraries/Drawing four circles" />
+            <option value="$PROJECT_DIR$/Topics/Image libraries/Drawing two lines" />
+            <option value="$PROJECT_DIR$/Topics/Image libraries/Raster Images" />
+            <option value="$PROJECT_DIR$/Topics/Image libraries/Representing images in Kotlin" />
+            <option value="$PROJECT_DIR$/Topics/Image libraries/Supported formats" />
+            <option value="$PROJECT_DIR$/Topics/Image libraries/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Scope functions  let, run, and with/Chain of functions" />
+            <option value="$PROJECT_DIR$/Topics/Scope functions  let, run, and with/Filter and match lists" />
+            <option value="$PROJECT_DIR$/Topics/Scope functions  let, run, and with/Organize your code" />
+            <option value="$PROJECT_DIR$/Topics/Scope functions  let, run, and with/Organize your code again" />
+            <option value="$PROJECT_DIR$/Topics/Scope functions  let, run, and with/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Scope functions  let, run, and with/Where to use let" />
+            <option value="$PROJECT_DIR$/util" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

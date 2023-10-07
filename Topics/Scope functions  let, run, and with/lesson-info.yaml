@@ -1,0 +1,9 @@
+custom_name: "Scope functions: let, run, and with"
+content:
+  - Theory
+  - Where to use let
+  - What is the result
+  - Organize your code
+  - Organize your code again
+  - Chain of functions
+  - Filter and match lists

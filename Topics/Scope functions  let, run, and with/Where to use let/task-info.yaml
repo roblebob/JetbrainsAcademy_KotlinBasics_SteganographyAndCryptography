@@ -1,0 +1,22 @@
+type: choice
+is_multiple_choice: true
+options:
+  - text: For long chains of operations with an object
+  - text: For initializing a new object and passing to it the result of a lambda
+  - text: For entering local variables with a limited scope
+  - text: For doing something with the safety call operator ?
+  - text: For object setting
+files:
+  - name: src/Main.kt
+    visible: true
+    text: |
+      // You can experiment here, it won’t be checked
+      
+      fun main(args: Array<String>) {
+        // put your code here
+      }
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/22877#comment
+status: Solved
+record: -1
+local_check: false
