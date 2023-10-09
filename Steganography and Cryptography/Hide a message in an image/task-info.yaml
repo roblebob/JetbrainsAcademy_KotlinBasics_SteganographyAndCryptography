@@ -185,6 +185,12 @@ files:
   - name: test/testimage.png
     visible: false
     learner_created: false
+  - name: test/out.png
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/12268#comment
-status: Unchecked
+status: Failed
+feedback:
+  message: Execution failed
+  time: "Mon, 09 Oct 2023 12:15:46 UTC"
 record: -1

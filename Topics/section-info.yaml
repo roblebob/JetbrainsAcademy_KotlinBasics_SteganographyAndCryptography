@@ -3,3 +3,5 @@ content:
   - Aggregate operations on collections
   - Generic functions
   - "Scope functions  let, run, and with"
+  - Ranges
+  - Generics and Any

@@ -1,0 +1,7 @@
+content:
+  - Theory
+  - Correct the usage of a non-generic class
+  - Initialize an object of a generic class
+  - Write a generic function
+  - Make it generic
+  - Signature of generic class
