@@ -1,0 +1,165 @@
+<h2>StringBuilder</h2>
+<div class="step-text">
+<p>In this topic, we will talk about the <code class="language-kotlin">StringBuilder</code> class, which provides a mutable sequence of characters and offers an opportunity to efficiently perform various string manipulation operations in Kotlin.</p>
+<h5 id="mutable-strings">Mutable strings</h5>
+<p>In Kotlin, <code class="language-kotlin">String</code> objects are <strong>immutable</strong>, meaning that once created, they cannot be changed. While immutability has its benefits in terms of stability, it can also introduce certain challenges when it comes to string manipulation and concatenation. Every time we perform operations like concatenation using the <code class="language-kotlin">+</code> operator or the <code class="language-kotlin">plus()</code> function, a new string object is created, which can result in unnecessary memory allocations and performance overhead.</p>
+<p>To address these challenges, Kotlin has a special class named <code class="language-kotlin">StringBuilder</code> that represents a <strong>mutable sequence of characters</strong>. It can be used to efficiently perform multiple string manipulation operations, allowing you to modify its contents without creating a new object. This can help reduce the memory overhead and improve performance.</p>
+<p><img alt="Difference in memory between String object and StringBuilder object" height="484" name="string vs stringbuilder.svg" src="https://ucarecdn.com/383aefc3-4e7a-4618-afa2-eac4c047b4b4/" width="600"/></p>
+<p>In the above image, we demonstrate different ways of concatenating two strings. First, we used the <code class="language-kotlin">+</code> operator on <code class="language-kotlin">String</code> objects, which allocates new memory to store the combined string.</p>
+<p>In the second one, we used a <code class="language-kotlin">StringBuilder</code> object and its <code class="language-kotlin">append()</code> method (we will talk more about it in a while) to perform the concatenation. This time, no new memory was allocated. Instead, the original value was <strong>mutated</strong> to represent the combined result.</p>
+<p></p><div class="alert alert-warning">Don't confuse <strong>immutability</strong> with the use of <code class="language-kotlin">val</code> or <code class="language-kotlin">var</code> when declaring variables. Immutability refers to certain data types that cannot be changed in memory once they have been created. On the other hand, <code class="language-kotlin">val</code> or <code class="language-kotlin">var</code> defines if a variable can be reassigned or not.</div>
+<h5 id="constructors-of-stringbuilder">Constructors of StringBuilder</h5>
+<p>There are two main ways to construct a <code class="language-kotlin">StringBuilder</code> object in Kotlin: using the <code class="language-kotlin">StringBuilder</code> constructor and using the <code class="language-kotlin">buildString</code> function.</p>
+<p>1. Using the <code class="language-kotlin">StringBuilder</code> constructor</p>
+<p>The <code class="language-kotlin">StringBuilder</code> class provides several constructors that allow you to create a new <code class="language-kotlin">StringBuilder</code> object. For example, you can create an empty <code class="language-kotlin">StringBuilder</code> with the default initial capacity like this:</p>
+<pre><code class="language-kotlin">val sb = StringBuilder()
+</code></pre>
+<p>You can also specify the initial capacity of the <code class="language-kotlin">StringBuilder</code> by passing an integer value to the constructor:</p>
+<pre><code class="language-kotlin">val sb = StringBuilder(100)
+</code></pre>
+<p>In addition, you can create a <code class="language-kotlin">StringBuilder</code> that contains the same characters as a given <code class="language-kotlin">CharSequence</code> or <code class="language-kotlin">String</code> by passing it to the constructor:</p>
+<pre><code class="language-kotlin">val sb1 = StringBuilder("Kotlin")
+val sb2 = StringBuilder(sb1)
+</code></pre>
+<p>2. Using the <code class="language-kotlin">buildString</code> function</p>
+<p>One of the features that make Kotlin stand out is its support for <strong>functional programming</strong>. That is why a more convenient way to construct a <code class="language-kotlin">StringBuilder</code> is by using the <code class="language-kotlin">buildString</code> function. This function takes a lambda as an argument and allows you to build a string using a <code class="language-kotlin">StringBuilder</code> without having to explicitly create one. Here is an example:</p>
+<pre><code class="language-kotlin">val str = buildString {
+    append("Hello")
+    append(' ')
+    append("Kotlin")
+}
+println(str) // Output: Hello Kotlin
+</code></pre>
+<p>We can also pass an initial capacity to the lambda expression as an argument:</p>
+<pre><code class="language-kotlin">val str = buildString(100) {
+    // some code here
+}</code></pre>
+<p>It is important to note that the <code class="language-kotlin">buildString</code> function returns a <code class="language-kotlin">String</code>, not a <code class="language-kotlin">StringBuilder</code>.</p>
+<p></p><div class="alert alert-warning">While <code class="language-kotlin">buildString</code> can be used to achieve many of the same results as using a <code class="language-kotlin">StringBuilder</code> directly, there may be some cases where using a <code class="language-kotlin">StringBuilder</code> directly provides more flexibility or control over the string manipulation process.</div>
+<h5 id="methods-of-stringbuilder">Methods of StringBuilder</h5>
+<p><code class="language-kotlin">StringBuilder</code> provides several methods for manipulating strings, which allow you to easily modify the contents of a <code class="language-kotlin">StringBuilder</code> object. Let's take a closer look at some of them.</p>
+<ul>
+<li>The <code class="language-kotlin">append</code> method: it allows you to add characters or strings to the end of a <code class="language-kotlin">StringBuilder</code>. This method is overloaded to accept different types of arguments.</li>
+</ul>
+<pre><code class="language-kotlin">val str = buildString {
+    append("Kotlin v") // Appending a String
+    append(1.8)        // Appending a Double
+}
+println(str) // Output: Kotlin v1.8
+</code></pre>
+<ul>
+<li>The <code class="language-kotlin">insert</code> method: it allows you to insert characters or strings at a specific position in a <code class="language-kotlin">StringBuilder</code>. This method is also overloaded to accept different types of arguments.</li>
+</ul>
+<pre><code class="language-kotlin">val str = buildString {
+    append("Hello World")
+    insert(5, ",")
+}
+println(str) // Output: Hello, World
+</code></pre>
+<ul>
+<li> The <code class="language-kotlin">delete</code> method: it allows you to remove characters or strings from a specific range in a <code class="language-kotlin">StringBuilder</code>. This method takes two arguments: the start index (included) and the end index (excluded) of the range to delete.</li>
+</ul>
+<pre><code class="language-kotlin">val str = buildString {
+    append("That's impossible!")
+    delete(7, 9)
+}
+println(str) // Output: That's possible!
+</code></pre>
+<ul>
+<li>The <code class="language-kotlin">replace</code> method: it allows you to replace characters or strings within a specific range in a <code class="language-kotlin">StringBuilder</code>. This method takes three arguments: the start index (included), the end index of the range to replace (excluded), and the string to replace with.</li>
+</ul>
+<pre><code class="language-kotlin">val str = buildString {
+    append("one, two, two, ...")
+    replace(10, 13, "three")
+}
+println(str) // Output: one, two, three, ...</code></pre>
+<ul>
+<li> The <code class="language-kotlin">reverse</code> method: it allows you to reverse the characters in a <code class="language-kotlin">StringBuilder</code>. This method takes no arguments and reverses the entire sequence of characters.</li>
+</ul>
+<pre><code class="language-kotlin">val str = buildString {
+    append("Hello, Kotlin!")
+    reverse()
+}
+println(str) // Output: !niltoK ,olleH</code></pre>
+<p>You can find more methods in the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-string-builder/" rel="noopener noreferrer nofollow" target="_blank">documentation</a>.</p>
+<h5 id="length-vs-capacity">Length vs. capacity</h5>
+<p>The <code class="language-kotlin">StringBuilder</code> class has two important members: <code class="language-kotlin">length</code> and <code class="language-kotlin">capacity()</code>. The <strong>length </strong>property represents the number of characters a <code class="language-kotlin">StringBuilder</code> object contains, while the <strong>capacity</strong> method returns the number of characters it can hold before it needs to be resized.</p>
+<p>Here is an example:</p>
+<pre><code class="language-kotlin">val sb = StringBuilder()
+println("Length: ${sb.length}, Capacity: ${sb.capacity()}") // Output: Length: 0, Capacity: 16
+sb.append("Hello!")
+println("Length: ${sb.length}, Capacity: ${sb.capacity()}") // Output: Length: 6, Capacity: 16
+</code></pre>
+<p><img alt="Difference between length and capacity" height="148" name="length vs capacityai.svg" src="https://ucarecdn.com/8aaacf99-5bd7-4df8-a062-6f61b759b017/" width="600"/></p>
+<p>The capacity<strong> </strong>of a <code class="language-kotlin">StringBuilder</code> is the number of characters it can hold before it needs to be resized, and it is always greater than or equal to its length. When you create a new <code class="language-kotlin">StringBuilder</code>, its initial capacity is determined by the constructor you use. If you use the default constructor, the initial capacity will be $16$ characters. If you pass a string when constructing a <code class="language-kotlin">StringBuilder</code>, it will add the length of that string to the initial capacity.</p>
+<p>As you append new characters to a <code class="language-kotlin">StringBuilder</code>, its length increases. If the length exceeds the current capacity, the <code class="language-kotlin">StringBuilder</code> automatically increases its capacity to accommodate the additional characters. The new capacity is calculated using the following formula: <code class="language-kotlin">newCapacity = max(oldCapacity * 2 + 2, newLength)</code>.</p>
+<p>Here is an example that demonstrates how the capacity of a <code class="language-kotlin">StringBuilder</code> created with the default constructor changes as characters are added:</p>
+<pre><code class="language-kotlin">val sb = StringBuilder()              // Capacity = initial capacity = 16
+println("Capacity: ${sb.capacity()}") // Output: Capacity: 16
+
+sb.append("0123456789abcdef")         // (oldCapacity &gt;= newLength) then: newCapacity = oldCapacity
+println("Capacity: ${sb.capacity()}") // Output: Capacity: 16
+
+sb.append('g')                        // // (oldCapacity &lt; newLength) then: newCapacity = max(oldCapacity * 2 + 2, newLength) = oldCapacity * 2 + 2
+println("Capacity: ${sb.capacity()}") // Output: Capacity: 34
+</code></pre>
+<p>And here is an example with a <code class="language-kotlin">StringBuilder</code> created by passing a string to its constructor:</p>
+<pre><code class="language-kotlin">val sb = StringBuilder("Kotlin!")   // Capacity = initial capacity + "Kotlin!".length = 16 + 7
+println("Capacity: ${sb.capacity()}")   // Output: Capacity: 23
+
+sb.append("0123456789abcdef")           // (oldCapacity &gt;= newLength) then: newCapacity = oldCapacity
+println("Capacity: ${sb.capacity()}")   // Output: Capacity: 23
+
+sb.append("0123456789abcdef0123456789abcdef") // (oldCapacity &lt; newLength) then: newCapacity = max(oldCapacity * 2 + 2, newLength) = newLength
+println("Capacity: ${sb.capacity()}, Length: ${sb.length}") // Output: Capacity: 55</code></pre>
+<h5 id="best-practices">Best practices</h5>
+<p>Here are some best practices for using the <code class="language-kotlin">StringBuilder</code> class:</p>
+<ol>
+<li>
+<p>Use <code class="language-kotlin">StringBuilder</code> for <strong>complex</strong> string manipulation tasks. <code class="language-kotlin">StringBuilder</code> is well-suited for complex string manipulation tasks, such as building or modifying a string incrementally. For simple string concatenation tasks, it may be more efficient to use the <code class="language-kotlin">+</code> operator or string interpolation.</p>
+</li>
+<li>
+<p><strong>Pre-allocate</strong> the capacity of the <code class="language-kotlin">StringBuilder</code>. If you know the approximate size of the final string, you can pre-allocate the capacity of the <code class="language-kotlin">StringBuilder</code> to reduce the number of times it needs to be resized. This can help improve performance by reducing the number of memory allocations.</p>
+</li>
+<li>
+<p><strong>Reuse</strong> the same <code class="language-kotlin">StringBuilder</code> object. If you need to perform multiple string manipulation operations, consider reusing the same <code class="language-kotlin">StringBuilder</code> object rather than creating a new one each time. This can help reduce memory overhead and improve performance. To do that, you can reset the <code class="language-kotlin">StringBuilder</code> to an empty state by calling its <code class="language-kotlin">setLength</code> method with an argument of $0$. This will clear the contents of the <code class="language-kotlin">StringBuilder</code> without changing its capacity, allowing you to reuse it for further string manipulation operations. Here is an example:</p>
+<pre><code class="language-kotlin">val sb = StringBuilder()
+sb.append("Java")
+println(sb.toString()) // Output: Java
+sb.setLength(0)
+sb.append("Kotlin")
+println(sb.toString()) // Output: Kotlin
+</code></pre>
+</li>
+<li>
+<p><strong>Convert</strong> a <code class="language-kotlin">StringBuilder</code> to a <code class="language-kotlin">String</code> when finished. Once you have finished manipulating a <code class="language-kotlin">StringBuilder</code>, you may want to convert it to a <code class="language-kotlin">String</code>. This can be done easily by calling the <code class="language-kotlin">toString</code> method on the <code class="language-kotlin">StringBuilder</code> object. Keep in mind that calling this method creates a new <code class="language-kotlin">String</code> object, so if you need to perform further string manipulation operations, it may be more efficient to continue using the <code class="language-kotlin">StringBuilder</code>.</p>
+</li>
+</ol>
+<p>Also, here are some best practices for using the <code class="language-kotlin">buildString</code> function:</p>
+<ol>
+<li>
+<p>Use <code class="language-kotlin">buildString</code> for <strong>simple</strong> string construction. The <code class="language-kotlin">buildString</code> function is well-suited for simple string construction tasks, such as concatenating a small number of strings or building a string in a loop. For more complex string manipulation tasks, it may be more efficient to use a <code class="language-kotlin">StringBuilder</code> directly.</p>
+</li>
+<li>
+<p><strong>Avoid</strong> unnecessary object creation. When using the <code class="language-kotlin">buildString</code> function, avoid creating unnecessary objects, such as temporary strings or character arrays. Instead, use the methods available on the <code class="language-kotlin">StringBuilder</code> to manipulate the string directly.</p>
+</li>
+<li>
+<p><strong>Leverage</strong> the scope of the lambda. The <code class="language-kotlin">buildString</code> function takes a lambda as an argument, which provides a convenient scope for building the string. Use this scope to your advantage by declaring local variables and functions that can help simplify your code.</p>
+</li>
+</ol>
+<p>Here is an example that demonstrates these best practices:</p>
+<pre><code class="language-kotlin">val numbers = listOf(1, 2, 3, 4, 5)
+val str = buildString {
+    for (number in numbers) {
+        append(number)
+        append(' ')
+    }
+}
+println(str) // Output: 1 2 3 4 5
+</code></pre>
+<p>In the example, we use the <code class="language-kotlin">buildString</code> function to construct a string by appending numbers and spaces in a loop. We avoid creating unnecessary objects by using the <code class="language-kotlin">append</code> method to manipulate the string directly. We also leverage the scope of the lambda by declaring a local variable (<code class="language-kotlin">number</code>) that simplifies our code.</p>
+<h5 id="conclusion">Conclusion</h5>
+<p>In this topic, we've learned about <code class="language-kotlin">StringBuilder</code>, a useful tool for efficiently performing multiple string manipulation operations in Kotlin. We've explored the differences between <code class="language-kotlin">StringBuilder</code> and <code class="language-kotlin">String</code> and learned how to construct and manipulate <code class="language-kotlin">StringBuilder</code> objects using methods such as <code class="language-kotlin">append</code>, <code class="language-kotlin">insert</code>, and <code class="language-kotlin">delete</code>.</p>
+<p>We've also learned about the <code class="language-kotlin">buildString</code> function, which provides a convenient way to construct a <code class="language-kotlin">String</code> using a <code class="language-kotlin">StringBuilder</code> without having to explicitly create one. We discussed best practices for using both <code class="language-kotlin">StringBuilder</code> and <code class="language-kotlin">buildString</code>, including pre-allocating the capacity of the <code class="language-kotlin">StringBuilder</code>, reusing the same <code class="language-kotlin">StringBuilder</code> object, and converting a <code class="language-kotlin">StringBuilder</code> to a <code class="language-kotlin">String</code> when finished.</p>
+<p>Applying these concepts, you can use <code class="language-kotlin">StringBuilder</code> and <code class="language-kotlin">buildString</code> to effectively manipulate strings in your Kotlin programs. But first, let's put your knowledge into practice.</p>
+</div>

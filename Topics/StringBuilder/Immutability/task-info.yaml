@@ -1,0 +1,21 @@
+type: choice
+is_multiple_choice: false
+options:
+  - text: Both <code>String</code> and <code>StringBuilder</code> are <strong>immutable</strong>.
+  - text: Only <code>StringBuilder</code> is <strong>mutable</strong>.
+  - text: Only <code>String</code> is <strong>mutable</strong>.
+  - text: Both <code>String</code> and <code>StringBuilder</code> are <strong>mutable</strong>.
+files:
+  - name: src/Main.kt
+    visible: true
+    text: |
+      // You can experiment here, it won’t be checked
+      
+      fun main(args: Array<String>) {
+        // put your code here
+      }
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/30911#comment
+status: Solved
+record: -1
+local_check: false

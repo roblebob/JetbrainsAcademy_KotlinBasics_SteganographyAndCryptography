@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="SteganographyTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2023-10-09T12:15:45" hostname="roblebob-Predator-PT515-51" time="0.783">
+<testsuite name="SteganographyTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2023-10-10T10:55:16" hostname="roblebob-Predator-PT515-51" time="0.738">
   <properties/>
-  <testcase name="start" classname="SteganographyTest" time="0.783">
-    <failure message="java.lang.AssertionError: Wrong answer in test #1&#10;&#10;Wrong output file. Wrong output image hash.&#10;&#10;Please find below the output of your program during this failed test.&#10;Note that the '&gt;' character indicates the beginning of the input line.&#10;&#10;---&#10;&#10;Task (hide, show, exit):&#10;&gt; hide&#10;Input image file:&#10;&gt; test/testimage.png&#10;Output image file:&#10;&gt; test/out.png&#10;Message to hide:&#10;&gt; Hyperskill steganography program.&#10;Message saved in test/out.png image.&#10;Task (hide, show, exit):" type="java.lang.AssertionError">java.lang.AssertionError: Wrong answer in test #1
+  <testcase name="start" classname="SteganographyTest" time="0.738">
+    <failure message="java.lang.AssertionError: Wrong answer in test #1&#10;&#10;Wrong output file. Wrong output image hash.&#10;&#10;Please find below the output of your program during this failed test.&#10;Note that the '&gt;' character indicates the beginning of the input line.&#10;&#10;---&#10;&#10;Task (hide, show, exit):&#10;&gt; hide&#10;Input image file:&#10;&gt; test/testimage.png&#10;Output image file:&#10;&gt; test/out.png&#10;Message to hide:&#10;&gt; Hyperskill steganography program.&#10;318551&#10;Message saved in test/out.png image.&#10;Task (hide, show, exit):" type="java.lang.AssertionError">java.lang.AssertionError: Wrong answer in test #1
 
 Wrong output file. Wrong output image hash.
 
@@ -19,6 +19,7 @@ Output image file:
 &gt; test/out.png
 Message to hide:
 &gt; Hyperskill steganography program.
+318551
 Message saved in test/out.png image.
 Task (hide, show, exit):
 	at org.junit.Assert.fail(Assert.java:89)
@@ -78,6 +79,7 @@ Output image file:
 > test/out.png
 Message to hide:
 > Hyperskill steganography program.
+318551
 Message saved in test/out.png image.
 Task (hide, show, exit):
 ]]></system-out>

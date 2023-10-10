@@ -5,3 +5,4 @@ content:
   - "Scope functions  let, run, and with"
   - Ranges
   - Generics and Any
+  - StringBuilder

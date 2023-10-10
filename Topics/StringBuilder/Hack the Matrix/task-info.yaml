@@ -1,0 +1,17 @@
+type: code
+files:
+  - name: src/Main.kt
+    visible: true
+    highlight_level: NONE
+    text: |-
+      fun decodeMessage(encodedMessage: String): String {
+          // Write your code here
+      }
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/30916#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Tue, 10 Oct 2023 15:22:05 UTC"
+record: -1
+submission_language: kotlin

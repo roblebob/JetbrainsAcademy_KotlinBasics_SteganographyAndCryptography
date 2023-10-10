@@ -35,7 +35,6 @@ fun main() {
                 }
                 val image = ImageIO.read( inputFile)
 
-
                 val hiddenImage = hide(message, image)
                 if (hiddenImage == null) {
                     println("The input image is not large enough to hold this message.")
@@ -79,9 +78,7 @@ fun hide(string: String, image: BufferedImage): BufferedImage? {
         return null
     }
 
-    println(image.width * image.height)
-
-    val hiddenImage = BufferedImage(image.width, image.height, BufferedImage.TYPE_3BYTE_BGR)
+    val hiddenImage = BufferedImage(image.width, image.height, BufferedImage.TYPE_INT_RGB)
 
     var bitIndex = 0
     for (x in 0 until image.width) {
@@ -92,21 +89,18 @@ fun hide(string: String, image: BufferedImage): BufferedImage? {
 
             val oldBlue = color.blue
 
-            if (true) { //(bitIndex >= bits.size) {
+            if (bitIndex >= bits.size) {
                 hiddenImage.setRGB(x, y, color.rgb)
                 continue
             }
 
+            assert(oldBlue shr 1 shl 1 or bits[bitIndex]  == ((oldBlue and 254) or bits[bitIndex]) % 256)
             //val newBlue = oldBlue shr 1 shl 1 or bits[bitIndex]
             val newBlue = ((oldBlue and 254) or bits[bitIndex]) % 256
-            if (newBlue - oldBlue !in -1..1) { throw Exception("Something went wrong") }
+            assert(newBlue - oldBlue !in -1..1)
 
 
-            val newColor = Color(
-                color.red,
-                color.green,
-                newBlue
-            )
+            val newColor = Color(color.red, color.green, newBlue)
 
             hiddenImage.setRGB(x, y, newColor.rgb)
 
@@ -176,6 +170,7 @@ fun Byte.toBits(): List<Int> {
 
 
 fun List<Int>.toByte(): Byte {
+    assert(this.size == 8)
     var out = 0
     for (i in 0 .. 7) {
         out += this[i] * 2.0.pow(7 - i).toInt()
