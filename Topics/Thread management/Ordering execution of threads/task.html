@@ -1,0 +1,8 @@
+<h2>Ordering execution of threads</h2>
+<div class="step-text">
+<p></p>
+<p>Implement a function that takes three objects (instances of <code class="language-kotlin">Thread</code> or its subclasses). The function must start the passed objects as threads in a way that the order of their execution goes like this: t3, t2, t1. These threads print secret phrases to the standard output, their output must always be the same.</p>
+<p>All given threads must be terminated before the implemented function is completed.</p>
+<p>Otherwise, the testing system will give you some hints on throwing exceptions in the main thread, for example:</p>
+<pre><code class="language-kotlin">Exception in thread "main" java.lang.RuntimeException: All threads must be terminated before ending the implemented function</code></pre><br><br><font color="gray">Memory limit: 256 MB</font><br><font color="gray">Time limit: 8 seconds</font><br><br>
+</div>

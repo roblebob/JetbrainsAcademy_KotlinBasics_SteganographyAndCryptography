@@ -3,7 +3,6 @@ package cryptography
 import java.awt.Color
 import java.awt.image.BufferedImage
 import java.io.File
-import java.lang.Exception
 import javax.imageio.ImageIO
 import kotlin.math.pow
 
@@ -33,17 +32,19 @@ fun main() {
                     println("Can't read input file!")
                     continue
                 }
-                val image = ImageIO.read( inputFile)
-
-                val hiddenImage = hide(message, image)
-                if (hiddenImage == null) {
-                    println("The input image is not large enough to hold this message.")
+                val image = try {
+                    ImageIO.read( inputFile)
+                } catch (e: Exception) {
+                    println("Can't read input file!")
                     continue
                 }
 
-                ImageIO.write(hiddenImage, "png", File(outputFileName))
+                if (!hide(message, image)) {
+                    continue
+                }
+
+                ImageIO.write(image, "png", File(outputFileName))
                 println("Message saved in $outputFileName image.")
-                continue
             }
             "show" -> {
                 println("Input image file:")
@@ -56,93 +57,70 @@ fun main() {
                 }
                 val image = ImageIO.read( inputFile)
                 println("Message:\n${show(image)}")
-
-                continue
             }
             else -> {
                 println("Wrong task: [$command]")
-                continue
             }
         }
     }
 }
 
 
-fun hide(string: String, image: BufferedImage): BufferedImage? {
+fun hide(string: String, image: BufferedImage): Boolean {
 
-    val stringAsByteArray = string.encodeToByteArray()
-    val bitLists = stringAsByteArray.map { it.toBits() }.toMutableList()
-    val bits = bitLists.flatten().toMutableList()
-    bits.addAll(ENDING)
+    val bits = string
+        .encodeToByteArray()
+        .map { it.toBits() }
+        .flatten()
+        .toMutableList()
+        .apply { addAll(ENDING) }
+
     if (bits.size > image.width * image.height) {
-        return null
+        println("The input image is not large enough to hold this message.")
+        return false
     }
 
-    val hiddenImage = BufferedImage(image.width, image.height, BufferedImage.TYPE_INT_RGB)
-
     var bitIndex = 0
-    for (x in 0 until image.width) {
-        for (y in 0 until image.height) {
+    out@for (y in 0 until image.height) {
+        for (x in 0 until image.width) {
+            if (bitIndex >= bits.size) { break@out }
 
-            val pixel = image.getRGB(x, y)
-            val color = Color(pixel)
-
-            val oldBlue = color.blue
-
-            if (bitIndex >= bits.size) {
-                hiddenImage.setRGB(x, y, color.rgb)
-                continue
+            with (bits[bitIndex]) {
+                val color = Color(image.getRGB(x, y))
+                image.setRGB(x, y, Color(color.red, color.green,
+                    ((color.blue and 254) or this) % 256
+                ).rgb)
             }
-
-            assert(oldBlue shr 1 shl 1 or bits[bitIndex]  == ((oldBlue and 254) or bits[bitIndex]) % 256)
-            //val newBlue = oldBlue shr 1 shl 1 or bits[bitIndex]
-            val newBlue = ((oldBlue and 254) or bits[bitIndex]) % 256
-            assert(newBlue - oldBlue !in -1..1)
-
-
-            val newColor = Color(color.red, color.green, newBlue)
-
-            hiddenImage.setRGB(x, y, newColor.rgb)
 
             bitIndex++
         }
     }
 
-    return hiddenImage
+    return true
 }
 
 
-
-
+/**
+ * read the least significant bits from the blue channel out of image given,
+ * until marker ENDING is found
+ * @return the hidden message as UTF-8-string
+ */
 fun show(image: BufferedImage): String {
-
     var bits = mutableListOf<Int>()
     var bitIndex = 0
-    out@for (x in 0 until image.width) {
-        for (y in 0 until image.height) {
+    out@for (y in 0 until image.height) {
+        for (x in 0 until image.width) {
 
-            val pixel = image.getRGB(x, y)
-            val color = Color(pixel)
-
-            bits.add( color.blue % 2)
-
-            if (bits.takeLast(24) == ENDING) {
-                break@out
-            }
-
+            bits.add( Color( image.getRGB(x, y)).blue % 2)
+            if (bits.takeLast(24) == ENDING) { break@out }
             bitIndex++
         }
     }
-    bits = bits.dropLast(24).toMutableList()
+    repeat(ENDING.size) {bits.removeLast() }
 
-    val bitLists = bits.chunked(8)
+    // convert bits to bytes to UTF-8-string, which is returned
     val byteList = mutableListOf<Byte>()
-
-    for (bitList in bitLists) {
-        val byte = bitList.toByte()
-        byteList.add(byte)
-    }
-
+    for (bitList in bits.chunked(8)) { byteList.add( bitList.toByte()) }
     return byteList.toByteArray().toString(Charsets.UTF_8)
 }
 

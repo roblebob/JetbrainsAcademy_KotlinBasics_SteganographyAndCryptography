@@ -1,0 +1,23 @@
+type: choice
+is_multiple_choice: false
+options:
+  - text: The result of a when statement
+  - text: An extension function that returns true or false
+  - text: 'A result of a conditional statement '
+  - text: A function that returns true or false based on the indicated input
+  - text: The number of iterations of a while loop
+files:
+  - name: src/Main.kt
+    visible: true
+    text: |
+      // You can experiment here, it won’t be checked
+      
+      fun main(args: Array<String>) {
+        // put your code here
+      }
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/22083#comment
+status: Solved
+record: -1
+custom_name: Which definition is correct?
+local_check: false

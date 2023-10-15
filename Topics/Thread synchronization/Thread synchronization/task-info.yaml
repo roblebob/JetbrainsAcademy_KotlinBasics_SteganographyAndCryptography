@@ -1,0 +1,22 @@
+type: choice
+is_multiple_choice: false
+options:
+  - text: ' a mechanism that allows hiding data from custom threads'
+  - text: a mechanism that allows a thread to access the data at the same time
+  - text: a mechanism which ensures that two or more concurrent threads do not execute
+      a block of a code at the same time
+  - text: a mechanism which forbids custom threads to access labeled methods and fields
+files:
+  - name: src/Main.kt
+    visible: true
+    text: |
+      // You can experiment here, it won’t be checked
+      
+      fun main(args: Array<String>) {
+        // put your code here
+      }
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/17875#comment
+status: Solved
+record: -1
+local_check: false

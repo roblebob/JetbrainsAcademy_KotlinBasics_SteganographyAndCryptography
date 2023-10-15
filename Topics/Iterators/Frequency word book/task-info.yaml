@@ -1,0 +1,18 @@
+type: code
+files:
+  - name: src/Main.kt
+    visible: true
+    text: |-
+      fun main() {
+          var list = readln().split(" ")
+          // write your code
+      
+      }
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/20804#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Sun, 15 Oct 2023 04:51:03 UTC"
+record: -1
+submission_language: kotlin

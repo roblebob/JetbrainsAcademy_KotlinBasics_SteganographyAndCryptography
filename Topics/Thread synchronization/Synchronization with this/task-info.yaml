@@ -1,0 +1,23 @@
+type: choice
+is_multiple_choice: false
+options:
+  - text: A class field which can be changed only by this thread and another thread
+      at the same time
+  - text: An instance which can be changed only by this thread and another thread at
+      the same time
+  - text: A class field which can be changed only by one thread
+  - text: An instance which can be changed only by one thread
+files:
+  - name: src/Main.kt
+    visible: true
+    text: |
+      // You can experiment here, it won’t be checked
+      
+      fun main(args: Array<String>) {
+        // put your code here
+      }
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/21749#comment
+status: Solved
+record: -1
+local_check: false

@@ -1,0 +1,22 @@
+type: code
+files:
+  - name: src/Main.kt
+    visible: true
+    highlight_level: NONE
+    text: |-
+      fun invokeMethods(t1: Thread, t2: Thread, t3: Thread) {
+          try {
+              // start passed instances here
+      
+          } catch (e: InterruptedException) {
+              println("Exception in thread \"main\" java.lang.RuntimeException: All threads must be terminated before ending the implemented method")
+          }
+      }
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/16205#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Thu, 12 Oct 2023 07:58:40 UTC"
+record: -1
+submission_language: kotlin

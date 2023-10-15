@@ -1,0 +1,22 @@
+type: choice
+is_multiple_choice: true
+options:
+  - text: Concise syntax
+  - text: Same syntax for different collections
+  - text: Low memory use
+  - text: Higher performance
+  - text: Backwards compatibility with Java
+files:
+  - name: src/Main.kt
+    visible: true
+    text: |
+      // You can experiment here, it won’t be checked
+      
+      fun main(args: Array<String>) {
+        // put your code here
+      }
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/22084#comment
+status: Solved
+record: -1
+local_check: false

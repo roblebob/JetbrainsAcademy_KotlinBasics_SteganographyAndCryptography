@@ -1,0 +1,18 @@
+<h2>Storage of products</h2>
+<div class="step-text">
+<p></p>
+<p>We have a class <code class="language-kotlin">Storage</code>, which can contain products. This class has a parameter <code class="language-kotlin">productCount</code> and a method <code class="language-kotlin">addProduct()</code> that increments the product count:</p>
+<pre><code class="language-kotlin">class Storage {
+    var productCount = 0
+
+    fun addProduct() {
+        productCount++
+    }
+}</code></pre>
+<p>The program reads the number of threads that will add products to <code class="language-kotlin">Storage</code>. After that, we read the number of products that each thread adds to <code class="language-kotlin">Storage</code> – each thread has its own number of products to be added to our storage, and each number should be on a separate line.<br/>
+Synchronize the <code class="language-kotlin">addProduct()</code> method so that the number of products in <code class="language-kotlin">Storage</code> will be correct.</p>
+<p>You need to change only the <code class="language-kotlin">Storage</code> class, don't add anything else!</p>
+<p><strong>Explanation of the example:</strong></p>
+<p>In the first line, we have a value of <strong>4</strong>, which is the number of threads.</p>
+<p>In the next lines, we have numbers <strong>1, 2, 3, </strong>and<strong> 4</strong>. So, the first thread adds one product to <code class="language-kotlin">Storage</code>, the second thread adds two products, and so on.</p><br><b>Sample Input:</b><br><pre><code class="language-no-highlight">4<br>1<br>2<br>3<br>4</code></pre><br><b>Sample Output:</b><br><pre><code class="language-no-highlight">10</code></pre><br><br><br><font color="gray">Memory limit: 256 MB</font><br><font color="gray">Time limit: 30 seconds</font><br><br>
+</div>

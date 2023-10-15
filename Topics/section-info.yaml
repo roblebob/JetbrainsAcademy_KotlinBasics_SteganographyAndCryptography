@@ -6,3 +6,16 @@ content:
   - Ranges
   - Generics and Any
   - StringBuilder
+  - Thread management
+  - Thread synchronization
+  - Standard output
+  - BigInteger
+  - For loop and lists
+  - Multi-dimensional array
+  - String formatting
+  - Mutable Set
+  - Iterators
+  - Test predicates  checking elements in collection
+  - Mapping transformation
+  - Regexps in use
+  - Recursion

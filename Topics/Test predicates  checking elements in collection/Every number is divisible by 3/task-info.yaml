@@ -1,0 +1,14 @@
+type: code
+files:
+  - name: src/Main.kt
+    visible: true
+    text: "fun main() {\n    val list = readln().split(\" \").map { it.toInt() }\n \
+    \   // write your code here\n    val res = \n\n\n    println(res)\n}"
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/22085#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Sun, 15 Oct 2023 04:55:32 UTC"
+record: -1
+submission_language: kotlin

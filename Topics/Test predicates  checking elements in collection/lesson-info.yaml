@@ -1,0 +1,9 @@
+custom_name: "Test predicates: checking elements in collection"
+content:
+  - Theory
+  - The right result is true
+  - Which operations return true
+  - Which definition is correct
+  - Benefits of Predicate Test
+  - Every number is divisible by 3
+  - Is it a palindrome list

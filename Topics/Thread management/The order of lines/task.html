@@ -1,0 +1,27 @@
+<h2>The order of lines</h2>
+<div class="step-text">
+<p></p>
+<p>Here's a class that extends <code class="language-kotlin">Thread</code> and overrides the <code class="language-kotlin">run</code> method:</p>
+<pre><code class="language-kotlin">class MyThread : Thread() {
+    override fun run() {
+        println("Hello from $name")
+    }
+}
+</code></pre>
+<p>And a snippet of code:</p>
+<pre><code class="language-kotlin">fun main() {
+    val t1 = MyThread()
+    t1.name = "My-thread-1"
+    t1.start()
+
+    t1.join()
+
+    val t2 = MyThread()
+    t2.name = "My-thread-2"
+    t2.start()
+    println("output-1")
+    t2.join()
+    println("output-2")
+}</code></pre>
+<p>In what order may the strings be printed out? Select all possible cases. Note that <strong>Output case: </strong>is not part of the output.</p>
+</div>

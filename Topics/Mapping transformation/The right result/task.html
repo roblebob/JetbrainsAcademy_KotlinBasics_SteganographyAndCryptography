@@ -1,0 +1,8 @@
+<h2>The right result</h2>
+<div class="step-text">
+<p></p><p>What is the result of this code? </p><pre><code class="language-kotlin">fun main() {
+    val listWords = listOf(listOf("anne", "michael"), listOf("caroline", "dimitry"), listOf("emilio", "francois"))
+
+    println(listWords.flatMap { it.mapIndexedNotNull { index, value -&gt; if (index % 2 == 0) value.uppercase() else null } })
+}</code></pre>
+</div>
