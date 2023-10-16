@@ -19,38 +19,34 @@ fun main() {
                 break
             }
             "hide" -> {
-
                 println("Input image file:")
-                val inputFileName = readln()
-                println("Output image file:")
-                val outputFileName = readln()
-                println("Message to hide:")
-                val message = readln()
-
-                val inputFile = File(inputFileName)
-                if (!inputFile.exists()) {
-                    println("Can't read input file!")
-                    continue
-                }
                 val image = try {
-                    ImageIO.read( inputFile)
+                    ImageIO.read( File(readln()))
                 } catch (e: Exception) {
                     println("Can't read input file!")
                     continue
                 }
 
-                if (!hide(message, image)) {
-                    continue
-                }
+                println("Output image file:")
+                val outputFileName = readln()
+                println("Message to hide:")
+                val message = readln()
+                println("Password:")
+                val password = readln()
+
+                val messageEncrypted = encrypt(message, password)
+
+
+
+                // processing...
+                if (!hide(image, message)) { continue }
 
                 ImageIO.write(image, "png", File(outputFileName))
                 println("Message saved in $outputFileName image.")
             }
             "show" -> {
                 println("Input image file:")
-                val inputFileName = readln()
-
-                val inputFile = File(inputFileName)
+                val inputFile = File( readln())
                 if (!inputFile.exists()) {
                     println("Can't read input file!")
                     continue
@@ -66,10 +62,16 @@ fun main() {
 }
 
 
-fun hide(string: String, image: BufferedImage): Boolean {
 
-    val bits = string
-        .encodeToByteArray()
+
+fun hide(image: BufferedImage, msg: String, pwd: String): Boolean {
+
+    val msgAsByteArray = msg.encodeToByteArray()
+    val pwdAsByteArray = pwd.encodeToByteArray()
+
+
+
+    val bits = msgAsByteArray
         .map { it.toBits() }
         .flatten()
         .toMutableList()
@@ -106,17 +108,17 @@ fun hide(string: String, image: BufferedImage): Boolean {
  * @return the hidden message as UTF-8-string
  */
 fun show(image: BufferedImage): String {
-    var bits = mutableListOf<Int>()
+    val bits = mutableListOf<Int>()
     var bitIndex = 0
     out@for (y in 0 until image.height) {
         for (x in 0 until image.width) {
 
             bits.add( Color( image.getRGB(x, y)).blue % 2)
-            if (bits.takeLast(24) == ENDING) { break@out }
+            if (bits.takeLast(ENDING.size) == ENDING) { break@out }
             bitIndex++
         }
     }
-    repeat(ENDING.size) {bits.removeLast() }
+    repeat(ENDING.size) { bits.removeLast() }
 
     // convert bits to bytes to UTF-8-string, which is returned
     val byteList = mutableListOf<Byte>()
@@ -129,7 +131,11 @@ fun show(image: BufferedImage): String {
 
 
 
+class MyPassword(password: String) {
+    private val password = password.encodeToByteArray()
 
+
+}
 
 
 
