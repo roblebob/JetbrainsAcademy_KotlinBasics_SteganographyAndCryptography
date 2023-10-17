@@ -70,9 +70,9 @@ fun hide(image: BufferedImage, msg: String, pwd: String): Boolean {
     var msgAsByteArray = msg.encodeToByteArray()
     var pwdAsByteArray = pwd.encodeToByteArray()
 
+    // encrypt message with password
     while (pwdAsByteArray.size < msgAsByteArray.size) { pwdAsByteArray += pwdAsByteArray }
     pwdAsByteArray = pwdAsByteArray.dropLast(pwdAsByteArray.size - msgAsByteArray.size).toByteArray()
-
     msgAsByteArray = msgAsByteArray.zip(pwdAsByteArray) { a, b -> a xor b }.toByteArray()
 
 
@@ -130,10 +130,10 @@ fun show(image: BufferedImage, password: String): String {
     for (bitList in bits.chunked(8)) { byteList.add( bitList.toByte()) }
     val encrypted = byteList.toByteArray()
 
+    // decrypt message with password
     var pwdAsByteArray = password.encodeToByteArray()
     while (pwdAsByteArray.size < encrypted.size) { pwdAsByteArray += pwdAsByteArray }
     pwdAsByteArray = pwdAsByteArray.dropLast(pwdAsByteArray.size - encrypted.size).toByteArray()
-
     val output = encrypted.zip(pwdAsByteArray) { a, b -> a xor b }.toByteArray()
 
     return output.toString(Charsets.UTF_8)

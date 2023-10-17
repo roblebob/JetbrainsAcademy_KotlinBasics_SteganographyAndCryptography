@@ -1,0 +1,21 @@
+type: choice
+is_multiple_choice: true
+options:
+  - text: Improve performance
+  - text: Avoid wasteful computations
+  - text: Save computer's memory
+  - text: Make the program multi-threaded
+files:
+  - name: src/Main.kt
+    visible: true
+    text: |
+      // You can experiment here, it won’t be checked
+      
+      fun main(args: Array<String>) {
+        // put your code here
+      }
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/19669#comment
+status: Solved
+record: -1
+local_check: false

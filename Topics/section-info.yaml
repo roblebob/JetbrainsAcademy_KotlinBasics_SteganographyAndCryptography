@@ -20,3 +20,4 @@ content:
   - Regexps in use
   - Recursion
   - Type cast and smart cast
+  - Lazy initialization
