@@ -4,6 +4,7 @@ import java.awt.Color
 import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
+import kotlin.experimental.xor
 import kotlin.math.pow
 
 val ENDING = listOf<Byte>(0, 0, 3).flatMap { it.toBits() }
@@ -34,12 +35,9 @@ fun main() {
                 println("Password:")
                 val password = readln()
 
-                val messageEncrypted = encrypt(message, password)
-
-
 
                 // processing...
-                if (!hide(image, message)) { continue }
+                if (!hide(image, message, password)) { continue }
 
                 ImageIO.write(image, "png", File(outputFileName))
                 println("Message saved in $outputFileName image.")
@@ -51,8 +49,11 @@ fun main() {
                     println("Can't read input file!")
                     continue
                 }
+                println("Password:")
+                val password = readln()
+
                 val image = ImageIO.read( inputFile)
-                println("Message:\n${show(image)}")
+                println("Message:\n${show(image, password)}")
             }
             else -> {
                 println("Wrong task: [$command]")
@@ -66,9 +67,13 @@ fun main() {
 
 fun hide(image: BufferedImage, msg: String, pwd: String): Boolean {
 
-    val msgAsByteArray = msg.encodeToByteArray()
-    val pwdAsByteArray = pwd.encodeToByteArray()
+    var msgAsByteArray = msg.encodeToByteArray()
+    var pwdAsByteArray = pwd.encodeToByteArray()
 
+    while (pwdAsByteArray.size < msgAsByteArray.size) { pwdAsByteArray += pwdAsByteArray }
+    pwdAsByteArray = pwdAsByteArray.dropLast(pwdAsByteArray.size - msgAsByteArray.size).toByteArray()
+
+    msgAsByteArray = msgAsByteArray.zip(pwdAsByteArray) { a, b -> a xor b }.toByteArray()
 
 
     val bits = msgAsByteArray
@@ -107,7 +112,7 @@ fun hide(image: BufferedImage, msg: String, pwd: String): Boolean {
  * until marker ENDING is found
  * @return the hidden message as UTF-8-string
  */
-fun show(image: BufferedImage): String {
+fun show(image: BufferedImage, password: String): String {
     val bits = mutableListOf<Int>()
     var bitIndex = 0
     out@for (y in 0 until image.height) {
@@ -123,21 +128,16 @@ fun show(image: BufferedImage): String {
     // convert bits to bytes to UTF-8-string, which is returned
     val byteList = mutableListOf<Byte>()
     for (bitList in bits.chunked(8)) { byteList.add( bitList.toByte()) }
-    return byteList.toByteArray().toString(Charsets.UTF_8)
+    val encrypted = byteList.toByteArray()
+
+    var pwdAsByteArray = password.encodeToByteArray()
+    while (pwdAsByteArray.size < encrypted.size) { pwdAsByteArray += pwdAsByteArray }
+    pwdAsByteArray = pwdAsByteArray.dropLast(pwdAsByteArray.size - encrypted.size).toByteArray()
+
+    val output = encrypted.zip(pwdAsByteArray) { a, b -> a xor b }.toByteArray()
+
+    return output.toString(Charsets.UTF_8)
 }
-
-
-
-
-
-
-class MyPassword(password: String) {
-    private val password = password.encodeToByteArray()
-
-
-}
-
-
 
 
 

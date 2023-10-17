@@ -19,3 +19,4 @@ content:
   - Mapping transformation
   - Regexps in use
   - Recursion
+  - Type cast and smart cast
